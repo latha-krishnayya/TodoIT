@@ -1,4 +1,4 @@
-package se.lexicon.sneha.model;
+package se.lexicon.sneha.modal;
 
 import java.util.UUID;
 
