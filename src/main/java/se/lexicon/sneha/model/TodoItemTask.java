@@ -1,4 +1,4 @@
-package se.lexicon.sneha.modal;
+package se.lexicon.sneha.model;
 
 public class TodoItemTask {
     private int id;
