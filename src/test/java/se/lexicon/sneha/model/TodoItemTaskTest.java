@@ -17,7 +17,7 @@ public class TodoItemTaskTest {
     @Before
     public void setUp() throws Exception {
         testtodoItem = new TodoItem(id,"Title1","nothing to do", LocalDate.parse("2021-05-11"), true, testassignee);
-        testassignee = new Person("Sneha","Bande","email@gmail");
+        testassignee = new Person(1,"Sneha","Bande","email@gmail");
         testItask = new TodoItemTask(id,true,testtodoItem,testassignee);
     }
 
@@ -27,9 +27,7 @@ public class TodoItemTaskTest {
         assertEquals(testtodoItem,testItask.getTodoItem());
         assertEquals(testassignee,testItask.getAssignee());
         assertTrue(testItask.isAssigned());
+        assertNotNull(testassignee);
     }
-    @Test(expected = RuntimeException.class)
-    public void constructor_throws_runtime_exception_on_null_Assignee() {
-        new TodoItemTask(id,false,testtodoItem,null);
-    }
+
 }
