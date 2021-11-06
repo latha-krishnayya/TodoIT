@@ -1,5 +1,6 @@
 package se.lexicon.sneha.model;
 
+
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,10 +12,12 @@ public class PersonTest{
     public static final String lastName="Bande";
     public static final String email="email";
     private Person testPerson;
+    private AppUser user;
+
 
     @Before
     public void setUp() throws Exception {
-        testPerson = new Person(firstName,lastName,email);
+        testPerson = new Person(1, firstName,lastName,email, user);
 
     }
 
@@ -25,17 +28,19 @@ public class PersonTest{
         assertEquals(firstName,testPerson.getFirstName());
         assertEquals(lastName, testPerson.getLastName());
         assertEquals(email,testPerson.getEmail());
+        assertEquals(user, testPerson.getCredentials());
     }
     @Test(expected = RuntimeException.class)
     public void constructor_throws_runtime_exception_on_null_firstName() {
-        new Person(null, lastName, email);
+        new Person(testPerson.getId(), null, lastName, email,user);
     }
     @Test(expected = RuntimeException.class)
     public void constructor_throws_runtime_exception_on_null_lastName() {
-        new Person(firstName, null, email);
+        new Person(testPerson.getId(), firstName, null, email, user);
     }
     @Test(expected = RuntimeException.class)
     public void constructor_throws_runtime_exception_on_null_Email() {
-        new Person(firstName, lastName, null);
+        new Person(testPerson.getId(),firstName, lastName, null,user);
     }
+
 }

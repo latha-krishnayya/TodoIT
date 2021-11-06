@@ -13,11 +13,13 @@ public class TodoItemTaskTest {
     private TodoItem testtodoItem;
     private Person testassignee;
     private TodoItemTask testItask;
+    private AppUser user;
 
     @Before
     public void setUp() throws Exception {
+
         testtodoItem = new TodoItem(id,"Title1","nothing to do", LocalDate.parse("2021-05-11"), true, testassignee);
-        testassignee = new Person(1,"Sneha","Bande","email@gmail");
+        testassignee = new Person(1,"Sneha","Bande","email@gmail",user);
         testItask = new TodoItemTask(id,true,testtodoItem,testassignee);
     }
 

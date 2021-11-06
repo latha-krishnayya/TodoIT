@@ -1,5 +1,6 @@
 package se.lexicon.sneha.model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Person {
@@ -8,27 +9,29 @@ public class Person {
     private String firstName;
     private String lastName;
     private String email;
+    private AppUser credentials;
 
 
-    public Person(int id, String firstName, String lastName, String email) {
+    public Person(int id, String firstName, String lastName, String email, AppUser credentials) {
         if (firstName == null) {
             throw new RuntimeException("Firstname cannot be null");
-        } else if (lastName == null) {
+        }
+        if (lastName == null) {
             throw new RuntimeException("lastname cannot be null");
-        } else if (email == null) {
+        }
+        if (email == null) {
             throw new RuntimeException("email cannot be null");
-        } else {
+        }
 
             setId(id);
             setFirstName(firstName);
             setLastName(lastName);
             setEmail(email);
 
-        }
     }
 
-    public Person(String  firstName, String lastName, String email) {
-        this(UUID.randomUUID().variant(), firstName,lastName, email);
+    public Person(String  firstName, String lastName, String email, AppUser credentials) {
+        this(UUID.randomUUID().variant(), firstName,lastName, email, credentials);
     }
 
     public int getId() {
@@ -62,7 +65,36 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getSummary(){
-        return "{" + " ID : "+id+ ", Name : "+firstName+" "+lastName+", Email : "+email+" }";
+
+    public AppUser getCredentials() {
+        return credentials;
     }
+
+    public void setCredentials(AppUser credentials) {
+        this.credentials = credentials;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(email, person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email);
+    }
+
 }

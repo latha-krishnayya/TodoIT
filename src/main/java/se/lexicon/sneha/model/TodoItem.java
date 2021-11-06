@@ -1,29 +1,30 @@
 package se.lexicon.sneha.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class TodoItem {
-    private int id;
-    String title;
-    String taskDescription;
-    LocalDate deadLine;
-    boolean done;
-    Person creator;
+    private int id=0;
+    private String title;
+    private String taskDescription;
+    private LocalDate deadLine;
+    private boolean done;
+    private Person creator;
 
     public TodoItem(int id, String title, String taskDescription, LocalDate deadLine, boolean done, Person creator) {
         if( title == null){
             throw new RuntimeException(" Task cannot be null ");
         } else if( deadLine == null){
             throw new RuntimeException(" must specify the Deadline for the task");
-        }else {
+        }
             this.id = id;
             this.title = title;
             this.taskDescription = taskDescription;
             this.deadLine = deadLine;
             this.done = done;
             this.creator = creator;
-        }
+
     }
 
     public TodoItem(int id,
@@ -93,9 +94,29 @@ public class TodoItem {
         return currentDate.isAfter(deadLine);
 
     }
-    public String getSummary(){
-        return "{ " +"Name : "+creator.getFirstName()+" "+creator.getLastName()+ ", " +
-                "Title : "+getTitle()+", Task Description : "+getTaskDescription()+" }";
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItem todoItem = (TodoItem) o;
+        return id == todoItem.id && done == todoItem.done && Objects.equals(title, todoItem.title) && Objects.equals(taskDescription, todoItem.taskDescription) && Objects.equals(deadLine, todoItem.deadLine) && Objects.equals(creator, todoItem.creator);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, taskDescription, deadLine, done, creator);
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", taskDescription='" + taskDescription + '\'' +
+                ", deadLine=" + deadLine +
+                ", done=" + done +
+                ", creator=" + creator +
+                '}';
+    }
 }
