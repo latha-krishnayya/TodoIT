@@ -1,8 +1,9 @@
 package se.lexicon.sneha.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class AppUser {
+public class AppUser{
     private String username;
     private String password;
     private AppRole role;

@@ -14,16 +14,12 @@ public class PersonTest{
     private Person testPerson;
     private AppUser user;
 
-
     @Before
     public void setUp() throws Exception {
         testPerson = new Person(1, firstName,lastName,email, user);
-
     }
-
     @Test
     public void TestPerson_successfully_instantiated() {
-
         assertNotNull(testPerson.getId());
         assertEquals(firstName,testPerson.getFirstName());
         assertEquals(lastName, testPerson.getLastName());
